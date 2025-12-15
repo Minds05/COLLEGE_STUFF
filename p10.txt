@@ -1,0 +1,46 @@
+Write Spark SQL queries to create an employee database and demonstrate CRUD operations.
+
+
+Steps
+
+    1) source bash.sh
+    2) echo $JAVA_HOME
+    3) echo $PATH
+    4) echo $CLASSPATH
+    5) spark-shell
+
+spark sql query to create database
+    6) spark.sql("CREATE DATABASE IF NOT EXISTS employee_db")
+    7) spark.sql("USE employee_db")
+
+spark sql query to create  table
+spark.sql("""
+  CREATE TABLE IF NOT EXISTS employees (
+    emp_id INT,
+    name STRING,
+    department STRING,
+    salary INT,
+    age INT
+  )
+  USING parquet
+""")
+
+spark sql query to insert values 
+spark.sql("INSERT INTO employees VALUES (101, 'John', 'IT', 60000, 30)")
+spark.sql("INSERT INTO employees VALUES (102, 'Alice', 'HR', 55000, 28)")
+spark.sql("INSERT INTO employees VALUES (103, 'Bob', 'Finance', 70000, 35)")
+
+To display the table
+spark.sql("SELECT * FROM employees").show()
+
+Filter certain rows
+spark.sql("SELECT * FROM employees WHERE department = 'IT'").show()
+
+delete operation
+spark.sql("DELETE FROM employees WHERE emp_id = 103")
+
+drop table
+spark.sql("DROP TABLE employees")
+
+Drop database:
+spark.sql("DROP DATABASE employee_db CASCADE")
