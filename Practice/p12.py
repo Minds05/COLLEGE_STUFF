@@ -22,3 +22,6 @@ data = lines.selectExpr("split(value, ',') as p").filter("size(p)=2") \
 
 model.transform(data).select("f1","f2","prediction").writeStream \
      .format("console").outputMode("append").start().awaitTermination()
+
+#sudo apt install python3-numpy
+#sudo apt install python3-setuptools python3-pip
